@@ -297,7 +297,7 @@ The model is trained and evaluated using a nested loop over different combinatio
 **9. Select the Best Model and Generate Classification Report:**
 The model with the highest accuracy on the test set is saved as the best model, which is used to generate predictions on the test set, and a classification report is generated using classification_report from sklearn.metrics. This report provides metrics such as precision, recall, and F1-score for each class, enabling a comprehensive evaluation of the model's performance.
 
-**10. Results**
+**10. Results:**
 
 (1) *Classification Report: Only-sentence Assessment's Neural Network Best Model*
 
@@ -330,6 +330,17 @@ Best parameters associated with this model: {Iterations 1500, Learning Rate 1.04
 | **weighted avg**| 0.51      | 0.46   | 0.45     | 960     |
 
 Best parameters associated with this model: {Iterations 1500, Learning Rate 1.049, Accuracy 46.15%}
+
+**Conclusion**
+
+In comparing the performance of the neural network models for the "Only-sentence Assessment" and "Additional Features Assessment," notable differences emerge.
+
+The "Only-sentence Assessment" model achieved an overall accuracy of 42.29%, with precision, recall, and F1-scores ranging from 0.37 to 0.56 across different difficulty levels. This model demonstrated a balanced performance across most classes.
+
+Conversely, the "Additional Features Assessment" model exhibited an improved overall accuracy of 46.15%. Notably, this model displayed higher precision, recall, and F1-scores for several difficulty levels, particularly for classes 0 (A1 Level) and 1 (A2 Level). However, it demonstrated lower performance for classes 3 (B2 Level) and 5 (C2 Level).
+
+Overall, while both models utilized the same hyperparameters (Iterations: 1500, Learning Rate: 1.049), the inclusion of additional features in the latter model led to a modest improvement in accuracy and performance metrics.
+
 
 ### 7️⃣ FlauBERT Model
 ### 8️⃣ 
