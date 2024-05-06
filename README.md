@@ -106,7 +106,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 **Pipeline configuration:** In the pipeline, the Logistic Regression classifier is replaced by a RandomForestClassifier. Random Forest is an ensemble learning method based on decision trees, where multiple trees are generated during the training process, and their results are aggregated to provide the final output. This method is particularly noted for its robustness against overfitting and its ability to handle both linear and non-linear relationships.
 
-**Prameter tuning specifics:** To optimize our model, we employ GridSearchCV again, but in this case we employ a 5-fold cross-validation (since the computational cost per fold is less than in the previous case) and some different parameters for TF-IDF and Random Forest Classifier:
+**Parameter tuning specifics:** To enhance our model's performance, we once more utilize GridSearchCV, employing a 5-fold cross-validation strategy (as it offers a lower computational burden per fold compared to the previous approach) and some different parameters for TF-IDF and Random Forest Classifier:
 
 - *"preprocessor__tfidf__ngram_range"*: This parameter is identical to the one specified for Logistic Regression. Values assessed: (1,1) and (1,2).
 - *"preprocessor__tfidf__use_idf"*: This parameter is identical to the one specified for Logistic Regression. Values assessed: True and False.
@@ -117,7 +117,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Random Forest Best Model *
+(1) *Classification Report: Only-sentence Assessment's Random Forest Classifier Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -133,7 +133,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 Best parameters associated with this model: {'classifier__max_depth': None, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 5, 'classifier__n_estimators': 300, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Random Forest Best Model*
+(2) *Classification Report: Additional Features Assessment's Random Forest Classifier Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -163,11 +163,11 @@ The procedure for implementing the Decision Tree Classifier is also almost equal
 
 **Pipeline configuration:** In the pipeline, the Logistic Regression classifier is replaced by a DecisionTreeClassifier, which is a supervised learning algorithm used for classification tasks.
 
-**Prameter tuning specifics:** To enhance our model's performance, we utilize GridSearchCV once more, employing a 5-fold cross-validation and the identical parameters as before for TF-IDF and the Decision Tree Classifier. However, we exclude "classifier__n_estimators", as it's not applicable in this scenario.
+**Parameter tuning specifics:** To enhance our model's performance, we utilize GridSearchCV once more, employing a 5-fold cross-validation and the identical parameters as before for TF-IDF and the Decision Tree Classifier. However, we exclude "classifier__n_estimators", as it's not applicable in this scenario.
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Decision Tree Best Model *
+(1) *Classification Report: Only-sentence Assessment's Decision Tree Classifier Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -181,9 +181,9 @@ The procedure for implementing the Decision Tree Classifier is also almost equal
 | **macro avg**   | 0.28      | 0.29   | 0.28     | 960     |
 | **weighted avg**| 0.29      | 0.29   | 0.28     | 960     |
 
-Parameters associated with this model: {'classifier__max_depth': 20, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 2, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
+Best parameters associated with this model: {'classifier__max_depth': 20, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 2, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Decision Tree Best Model*
+(2) *Classification Report: Additional Features Assessment's Decision Tree Classifier Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -197,14 +197,72 @@ Parameters associated with this model: {'classifier__max_depth': 20, 'classifier
 | **macro avg**   | 0.40      | 0.41   | 0.40     | 960     |
 | **weighted avg**| 0.39      | 0.40   | 0.40     | 960     |
 
-Parameters associated with this model: {'classifier__max_depth': 10, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 10, 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': False}
+Best parameters associated with this model: {'classifier__max_depth': 10, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 10, 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': False}
 
 **Conclusion**
+
 The Decision Tree model trained on the "Only-sentence Assessment" achieved low-moderate accuracy (29%) with varying precision, recall, and F1-scores across proficiency levels. In contrast, the "Additional Features Assessment" model significantly improved classification performance, achieving an accuracy of 40% and higher precision, recall, and F1-scores across all proficiency levels of French.
 
 This improvement suggests again that incorporating additional features enhances the model's ability to accurately classify proficiency levels. Notably, the "Additional Features Assessment" model excelled in classifying beginner proficiency levels, demonstrating the importance of diverse features in proficiency assessment tasks.
 
+Regarding the optimal hyperparameters, in the "Only-sentence Assessment" model, a deeper tree structure (max_depth=20) and less strict splitting criteria (min_samples_split=2) were chosen to potentially capture intricate patterns. Conversely, the "Additional Features Assessment" model opted for a shallower tree (max_depth=10) with stricter splitting criteria (min_samples_split=10) to prevent overfitting. Both models employed unigram TF-IDF representation, emphasizing single words' importance across documents. These hyperparameters were carefully tailored to each feature assessment's characteristics, highlighting the models' adaptability and the importance of parameter tuning for optimal classification performance.
+
 ### 5️⃣ KNN Classifier
+
+The process of implementing the KNN classifier closely resembles that of Logistic Regression too, with a few key distinctions:
+
+**Pipeline configuration:** In the pipeline, the Logistic Regression classifier is substituted with a KNN (K-Nearest Neighbors) classifier. KNN is a simple yet effective classification algorithm that classifies new data points based on the majority class of their neighboring data points.
+
+**Parameter tuning specifics:** To optimize our model, we employ GridSearchCV again, with a 5-fold cross-validation and some different parameters for TF-IDF and KNN Classifier:
+
+- *"tfidf__ngram_range"*: This parameter matches the one specified for Logistic Regression as *"preprocessor__tfidf__ngram_range"*. Values assessed: (1,1) and (1,2).
+- *"tfidf__use_idf"*: This parameter matches the one specified for Logistic Regression as *"preprocessor__tfidf__use_idf"*. Values assessed: True and False.
+- *"classifier__n_neighbors"*: This parameter determines the number of neighbors to consider for classification. KNN (K-Nearest Neighbors) assigns a class label to a new data point based on the majority class among its n_neighbors nearest neighbors. Values assessed: 3, 5, 6 (equal to the number of labels) and 7.
+- *"classifier__weights"*: This parameter specifies the weight function used in prediction. It can take two values: 'uniform' (all neighbors are weighted equally in the prediction process) and 'distance'(closer neighbors are given more weight in the prediction, with weights inversely proportional to their distance from the query point).
+- *"classifier__algorithm"*: This parameter specifies the algorithm used to compute the nearest neighbors. It can take four values: 'auto'(automatically selects the most appropriate algorithm based on the training data), 'ball_tree' (uses a Ball Tree data structure to perform nearest neighbor search efficiently), 'kd_tree' (uses a KD Tree data structure for efficient nearest neighbor search) and 'brute' (computes nearest neighbors by brute force, i.e., by comparing the distances to all training samples).
+
+**Results**
+
+(1) *Classification Report: Only-sentence Assessment's KNN Classifier Best Model *
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.30      | 0.73   | 0.42     | 153     |
+| **1 (A2 Level)**| 0.28      | 0.33   | 0.30     | 156     |
+| **2 (B1 Level)**| 0.22      | 0.22   | 0.22     | 153     |
+| **3 (B2 Level)**| 0.46      | 0.24   | 0.32     | 173     |
+| **4 (C1 Level)**| 0.61      | 0.23   | 0.33     | 166     |
+| **5 (C2 Level)**| 0.59      | 0.37   | 0.46     | 159     |
+| **accuracy**    |           |        | 0.35     | 960     |
+| **macro avg**   | 0.41      | 0.35   | 0.34     | 960     |
+| **weighted avg**| 0.41      | 0.35   | 0.34     | 960     |
+
+Best parameters associated with this model: {'classifier__algorithm': 'auto', 'classifier__n_neighbors': 3, 'classifier__weights': 'distance', 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
+
+(2) *Classification Report: Additional Features Assessment's KNN Classifier Best Model*
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.50      | 0.71   | 0.59     | 153     |
+| **1 (A2 Level)**| 0.38      | 0.38   | 0.38     | 156     |
+| **2 (B1 Level)**| 0.33      | 0.26   | 0.29     | 153     |
+| **3 (B2 Level)**| 0.34      | 0.29   | 0.31     | 173     |
+| **4 (C1 Level)**| 0.32      | 0.29   | 0.30     | 166     |
+| **5 (C2 Level)**| 0.36      | 0.39   | 0.38     | 159     |
+| **accuracy**    |           |        | 0.38     | 960     |
+| **macro avg**   | 0.37      | 0.39   | 0.37     | 960     |
+| **weighted avg**| 0.37      | 0.38   | 0.37     | 960     |
+
+Best parameters associated with this model: {'classifier__algorithm': 'auto', 'classifier__n_neighbors': 7, 'classifier__weights': 'distance', 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': False}
+
+**Conclusion**
+
+In conclusion, the KNN classifiers trained on two different feature assessments showed varying degrees of success in accurately classifying proficiency levels. Despite employing optimal hyperparameters and a thorough evaluation process, both models struggled with precision and recall, particularly for lower proficiency levels (A1, A2).
+
+The "Additional Features Assessment" model exhibited slightly better performance compared to the "Only-sentence Assessment" model (0.35 vs 0.38), achieving higher accuracy and precision across most proficiency levels. This suggests that the inclusion of additional features contributed to marginal improvements in classification accuracy. However, both models still faced challenges in accurately distinguishing between different proficiency levels, indicating the need for further optimization and feature engineering.
+
+Regarding optimal hypermeparameters, they turned out to be almost identical in both models except from *"classifier__n_neighbors"*. In the "Only-sentence Assessment" dataset, a smaller neighborhood size of 3 neighbors sufficed. This suggests that the feature space may be less complex, with neighboring samples providing sufficient contextual information for classification. Conversely, the "Additional Features Assessment" dataset incorporated additional and more diverse features, introducing greater variability and complexity to the feature space. As a result, a larger neighborhood size of 7 neighbors was necessary to capture the broader spectrum of feature interactions and relationships. This larger neighborhood enables the model to consider a wider array of samples during classification.
+
 ### 6️⃣ Neural Networks
 ### 7️⃣ FlauBERT Model
 ### 8️⃣ 
