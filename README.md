@@ -61,7 +61,7 @@ We split our dataset into training and testing sets to validate the effectivenes
 **6. Model Evaluation and Results**
 Finally, we evaluate our best model on the test set to measure its performance. The classification reports obtained are the following ones: 
 
-(1) *Classification Report: Only-sentence Assessment's Logistic Regression Best Model *
+(1) *Classification Report: Only-sentence Assessment's Logistic Regression Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -77,7 +77,7 @@ Finally, we evaluate our best model on the test set to measure its performance. 
 
 Best parameters associated with this model:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'classifier__solver': 'lbfgs', 'tfidf__ngram_range': (1, 2), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Logistic Regression Best Model *
+(2) *Classification Report: Additional Features Assessment's Logistic Regression Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -117,7 +117,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Random Forest Best Model *
+(1) *Classification Report: Only-sentence Assessment's Random Forest Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -167,7 +167,7 @@ The procedure for implementing the Decision Tree Classifier is also almost equal
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Decision Tree Best Model *
+(1) *Classification Report: Only-sentence Assessment's Decision Tree Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -223,7 +223,7 @@ The process of implementing the KNN classifier closely resembles that of Logisti
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's KNN Classifier Best Model *
+(1) *Classification Report: Only-sentence Assessment's KNN Classifier Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -307,7 +307,7 @@ The model is trained and evaluated using a nested loop over different combinatio
 The model with the highest accuracy on the test set is saved as the best model, which is used to generate predictions on the test set, and a classification report is generated using classification_report from sklearn.metrics. This report provides metrics such as precision, recall, and F1-score for each class, enabling a comprehensive evaluation of the model's performance.
 
 **10. Results**
-(1) *Classification Report: Only-sentence Assessment's Neural Network Best Model *
+(1) *Classification Report: Only-sentence Assessment's Neural Network Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
