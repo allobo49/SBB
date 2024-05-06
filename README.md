@@ -267,37 +267,38 @@ Regarding optimal hypermeparameters, they turned out to be almost identical in b
 
 In pursuit of higher accuracy levels, we have chosen to explore novel methodologies such as neural networks. This machine learning technique involves a series of steps, outlined as follows:
 
-**1. Label Encoding**
+**1. Label Encoding:**
 The 'difficulty' labels are encoded using a LabelEncoder to convert them into numerical format, suitable for model training.
 
-**2. TF-IDF Vectorization**
+**2. TF-IDF Vectorization:**
 The sentences are transformed into TF-IDF (Term Frequency-Inverse Document Frequency) vectors using TfidfVectorizer. This step converts text data into numerical features, where each word's importance is weighted based on its frequency in the sentence and rarity across all sentences.
 
-**3. Train-Test Split**
+**3. Train-Test Split:**
 The dataset is split into training and testing sets using train_test_split from sklearn.model_selection. This separation ensures that the model's performance can be evaluated on unseen data.
 
-**4. Feature Scaling**
+**4. Feature Scaling:**
 The input features are scaled using MinMaxScaler (sentences) and StandardScaler (features) to ensure that all features are on a similar scale. This prevents certain features from dominating others during training.
 
-**5. Convert to Torch Tensors**
+**5. Convert to Torch Tensors:**
 The scaled feature vectors and labels are converted into PyTorch tensors using torch.tensor. This step is necessary for compatibility with PyTorch's neural network framework.
 
-**6. Define Neural Network Architecture**
+**6. Define Neural Network Architecture:**
 A neural network class NeuralNetwork is defined using PyTorch's nn.Module. It consists of two linear layers (nn.Linear) with ReLU activation function (nn.ReLU), defining the forward pass of the network.
 
-**7. Hyperparameters Initialization**
+**7. Hyperparameters Initialization:**
 Hyperparameters such as the number of iterations and learning rates are defined. These parameters control the training process and optimization of the neural network:
 
 - *"iterations"*: This hyperparameter determines the number of times the entire dataset is passed forward and backward through the neural network during the training process. It represents the number of times the model updates its parameters to minimize the loss function. Values assessed: 500, 1000, 1500.
 - *"learning_rates"*:This is the hyperparameter that controls the step size at each iteration while moving toward a minimum of the loss function. It determines how much the model's parameters are adjusted in each iteration of the optimization algorithm. Values assessed: 0.001, 1.049 and 12.031.
 
-**8. Model Training and Evaluation**
+**8. Model Training and Evaluation:**
 The model is trained and evaluated using a nested loop over different combinations of iterations and learning rates. The neural network is trained using stochastic gradient descent (torch.optim.SGD) and cross-entropy loss (nn.CrossEntropyLoss).
 
-**9. Select the Best Model and Generate Classification Report**
+**9. Select the Best Model and Generate Classification Report:**
 The model with the highest accuracy on the test set is saved as the best model, which is used to generate predictions on the test set, and a classification report is generated using classification_report from sklearn.metrics. This report provides metrics such as precision, recall, and F1-score for each class, enabling a comprehensive evaluation of the model's performance.
 
 **10. Results**
+
 (1) *Classification Report: Only-sentence Assessment's Neural Network Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
