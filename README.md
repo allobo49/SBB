@@ -341,8 +341,10 @@ Conversely, the "Additional Features Assessment" model exhibited an improved ove
 
 Overall, while both models utilized the same hyperparameters (Iterations: 1500, Learning Rate: 1.049), the inclusion of additional features in the latter model led to a modest improvement in accuracy and performance metrics.
 
-
 ### 7️⃣ FlauBERT Model
+
+
+
 ### 8️⃣ 
 ### 🖇️ Collective Overview
 ## Best Model: FlauBERT Model
