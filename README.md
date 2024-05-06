@@ -53,7 +53,7 @@ To optimize our model, we employ GridSearchCV with a range of parameters for TF-
 - *"classifier__C"*: This is the inverse of regularization strength in logistic regression. Regularization is applied to avoid overfitting by penalizing larger coefficients. Values assessed: 0.1, 1 and 10.
 - *"classifier__penalty"*: This parameter specifies the norm used in the penalization (regularization) of the logistic regression model. Values assessed: l2 and none.
 
-This extensive search help identifying the best combination of parameters for our model based on accuracy.
+This extensive search help identifying the best combination of parameters for our model based on accuracy and by performing a 3-fold cross-validation.
 
 **5. Training and Testing**
 We split our dataset into training and testing sets to validate the effectiveness of our model. After training, we identify the best model parameters that lead to the highest cross-validation accuracy.
@@ -61,7 +61,7 @@ We split our dataset into training and testing sets to validate the effectivenes
 **6. Model Evaluation and Results**
 Finally, we evaluate our best model on the test set to measure its performance. The classification reports obtained are the following ones: 
 
-(1) *Classification Report: Only-sentence Assessment's Best Model *
+(1) *Classification Report: Only-sentence Assessment's Logistic Regression Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -75,9 +75,9 @@ Finally, we evaluate our best model on the test set to measure its performance. 
 | **macro avg**   | 0.49      | 0.49   | 0.48     | 960     |
 | **weighted avg**| 0.49      | 0.48   | 0.48     | 960     |
 
-Best parameters:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'classifier__solver': 'lbfgs', 'tfidf__ngram_range': (1, 2), 'tfidf__use_idf': True}
+Best parameters associated with this model:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'classifier__solver': 'lbfgs', 'tfidf__ngram_range': (1, 2), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Best Model*
+(2) *Classification Report: Additional Features Assessment's Logistic Regression Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -91,7 +91,7 @@ Best parameters:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'classifier
 | **macro avg**   | 0.51      | 0.51   | 0.51     | 960     |
 | **weighted avg**| 0.51      | 0.51   | 0.51     | 960     |
 
-Best parameters:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': True}
+Best parameters associated with this model:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': True}
 
 **7. Conclusion**
 
@@ -106,9 +106,104 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 **Pipeline configuration:** In the pipeline, the Logistic Regression classifier is replaced by a RandomForestClassifier. Random Forest is an ensemble learning method based on decision trees, where multiple trees are generated during the training process, and their results are aggregated to provide the final output. This method is particularly noted for its robustness against overfitting and its ability to handle both linear and non-linear relationships.
 
-**Prameter tuning specifics:** To optimize our model, we employ GridSearchCV again, but in this case we employ a different range of parameters for TF-IDF and logistic regression:
+**Prameter tuning specifics:** To optimize our model, we employ GridSearchCV again, but in this case we employ a 5-fold cross-validation (since the computational cost per fold is less than in the previous case) and some different parameters for TF-IDF and Random Forest Classifier:
+
+- *"preprocessor__tfidf__ngram_range"*: This parameter is identical to the one specified for Logistic Regression. Values assessed: (1,1) and (1,2).
+- *"preprocessor__tfidf__use_idf"*: This parameter is identical to the one specified for Logistic Regression. Values assessed: True and False.
+- *"classifier__n_estimators"*: This parameter determines the number of decision trees in the random forest. Values assessed: 100, 200 and 300.
+- *"classifier__max_depth"*: It sets the maximum depth of each decision tree in the forest. Values assessed: None, 10, 20 and 30.
+- *"classifier__min_samples_split"*: This parameter specifies the minimum number of samples required to split an internal node. Values assessed: 2, 5 and 10.
+- *"classifier__min_samples_leaf"*: It sets the minimum number of samples required to be at a leaf node. Values assessed: 1, 2 and 4.
+
+**Results**
+
+(1) *Classification Report: Only-sentence Assessment's Random Forest Best Model *
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.41      | 0.78   | 0.54     | 153     |
+| **1 (A2 Level)**| 0.35      | 0.29   | 0.32     | 156     |
+| **2 (B1 Level)**| 0.40      | 0.36   | 0.38     | 153     |
+| **3 (B2 Level)**| 0.39      | 0.34   | 0.36     | 173     |
+| **4 (C1 Level)**| 0.33      | 0.27   | 0.30     | 166     |
+| **5 (C2 Level)**| 0.49      | 0.36   | 0.41     | 159     |
+| **accuracy**    |           |        | 0.40     | 960     |
+| **macro avg**   | 0.40      | 0.40   | 0.39     | 960     |
+| **weighted avg**| 0.40      | 0.40   | 0.38     | 960     |
+
+Best parameters associated with this model: {'classifier__max_depth': None, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 5, 'classifier__n_estimators': 300, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
+
+(2) *Classification Report: Additional Features Assessment's Random Forest Best Model*
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.55      | 0.77   | 0.64     | 153     |
+| **1 (A2 Level)**| 0.41      | 0.40   | 0.41     | 156     |
+| **2 (B1 Level)**| 0.39      | 0.41   | 0.40     | 153     |
+| **3 (B2 Level)**| 0.40      | 0.32   | 0.36     | 173     |
+| **4 (C1 Level)**| 0.38      | 0.36   | 0.37     | 166     |
+| **5 (C2 Level)**| 0.51      | 0.43   | 0.47     | 159     |
+| **accuracy**    |           |        | 0.45     | 960     |
+| **macro avg**   | 0.44      | 0.45   | 0.44     | 960     |
+| **weighted avg**| 0.44      | 0.45   | 0.44     | 960     |
+
+Best parameters associated with this model:  {'classifier__max_depth': None, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 5, 'classifier__n_estimators': 300, 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': True}
+
+**Conclusion**
+
+The Random Forest model trained on the "Only-sentence Assessment" achieved an accuracy of 40%, demonstrating moderate precision, recall, and F1-scores across proficiency levels. Notably, it showed better performance in distinguishing lower proficiency levels (A1, A2) but still indicated room for improvement in overall accuracy.
+
+In contrast, the Random Forest model trained on the "Additional Features Assessment" outperformed its counterpart, achieving an accuracy of 45% with improved precision, recall, and F1-scores across all proficiency levels. Particularly, this model excelled in accurately classifying beginner proficiency levels (A1), showcasing the effectiveness of incorporating diverse features in proficiency assessment tasks.
+
+Regarding the optimal hyperparameters, which turned out to be identical in both models, they represent a balanced trade-off between model complexity and generalization. With n_estimators set to 300, the models benefit from a larger ensemble size, enhancing stability and reducing overfitting. Setting max_depth to None allows trees to grow without restriction, capturing complex patterns. min_samples_split and min_samples_leaf values of 5 and 1, respectively, ensure robust splitting criteria and sufficient samples at leaf nodes for accurate predictions. Additionally, using unigrams (ngram_range=(1, 1)) with IDF weighting (use_idf=True) optimizes feature representation, emphasizing informative features while mitigating the impact of common terms. 
 
 ### 4️⃣ Decision Tree Classifier
+
+The procedure for implementing the Decision Tree Classifier is also almost equal to that of the Logistic Regression, with a few key distinctions:
+
+**Pipeline configuration:** In the pipeline, the Logistic Regression classifier is replaced by a DecisionTreeClassifier, which is a supervised learning algorithm used for classification tasks.
+
+**Prameter tuning specifics:** To enhance our model's performance, we utilize GridSearchCV once more, employing a 5-fold cross-validation and the identical parameters as before for TF-IDF and the Decision Tree Classifier. However, we exclude "classifier__n_estimators", as it's not applicable in this scenario.
+
+**Results**
+
+(1) *Classification Report: Only-sentence Assessment's Decision Tree Best Model *
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.34      | 0.62   | 0.44     | 153     |
+| **1 (A2 Level)**| 0.26      | 0.23   | 0.24     | 156     |
+| **2 (B1 Level)**| 0.18      | 0.14   | 0.16     | 153     |
+| **3 (B2 Level)**| 0.30      | 0.40   | 0.34     | 173     |
+| **4 (C1 Level)**| 0.32      | 0.17   | 0.22     | 166     |
+| **5 (C2 Level)**| 0.41      | 0.19   | 0.24     | 159     |
+| **accuracy**    |           |        | 0.29     | 960     |
+| **macro avg**   | 0.28      | 0.29   | 0.28     | 960     |
+| **weighted avg**| 0.29      | 0.29   | 0.28     | 960     |
+
+Parameters associated with this model: {'classifier__max_depth': 20, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 2, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
+
+(2) *Classification Report: Additional Features Assessment's Decision Tree Best Model*
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.57      | 0.66   | 0.61     | 153     |
+| **1 (A2 Level)**| 0.42      | 0.50   | 0.46     | 156     |
+| **2 (B1 Level)**| 0.28      | 0.28   | 0.28     | 153     |
+| **3 (B2 Level)**| 0.36      | 0.28   | 0.31     | 173     |
+| **4 (C1 Level)**| 0.35      | 0.27   | 0.30     | 166     |
+| **5 (C2 Level)**| 0.40      | 0.45   | 0.42     | 159     |
+| **accuracy**    |           |        | 0.40     | 960     |
+| **macro avg**   | 0.40      | 0.41   | 0.40     | 960     |
+| **weighted avg**| 0.39      | 0.40   | 0.40     | 960     |
+
+Parameters associated with this model: {'classifier__max_depth': 10, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 10, 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': False}
+
+**Conclusion**
+The Decision Tree model trained on the "Only-sentence Assessment" achieved low-moderate accuracy (29%) with varying precision, recall, and F1-scores across proficiency levels. In contrast, the "Additional Features Assessment" model significantly improved classification performance, achieving an accuracy of 40% and higher precision, recall, and F1-scores across all proficiency levels of French.
+
+This improvement suggests again that incorporating additional features enhances the model's ability to accurately classify proficiency levels. Notably, the "Additional Features Assessment" model excelled in classifying beginner proficiency levels, demonstrating the importance of diverse features in proficiency assessment tasks.
+
 ### 5️⃣ KNN Classifier
 ### 6️⃣ Neural Networks
 ### 7️⃣ FlauBERT Model
