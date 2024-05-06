@@ -117,7 +117,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Random Forest Classifier Best Model *
+(1) *Classification Report: Only-sentence Assessment's Random Forest Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -133,7 +133,7 @@ The procedure for implementing the Random Forest classifier closely mirrors that
 
 Best parameters associated with this model: {'classifier__max_depth': None, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 5, 'classifier__n_estimators': 300, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Random Forest Classifier Best Model*
+(2) *Classification Report: Additional Features Assessment's Random Forest Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -167,7 +167,7 @@ The procedure for implementing the Decision Tree Classifier is also almost equal
 
 **Results**
 
-(1) *Classification Report: Only-sentence Assessment's Decision Tree Classifier Best Model *
+(1) *Classification Report: Only-sentence Assessment's Decision Tree Best Model *
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
@@ -183,7 +183,7 @@ The procedure for implementing the Decision Tree Classifier is also almost equal
 
 Best parameters associated with this model: {'classifier__max_depth': 20, 'classifier__min_samples_leaf': 1, 'classifier__min_samples_split': 2, 'tfidf__ngram_range': (1, 1), 'tfidf__use_idf': True}
 
-(2) *Classification Report: Additional Features Assessment's Decision Tree Classifier Best Model*
+(2) *Classification Report: Additional Features Assessment's Decision Tree Best Model*
 
 |                 | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|---------|
