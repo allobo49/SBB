@@ -265,6 +265,8 @@ Regarding optimal hypermeparameters, they turned out to be almost identical in b
 
 ### 6️⃣ Neural Networks
 
+In pursuit of higher accuracy levels, we have chosen to explore novel methodologies such as neural networks. This machine learning technique involves a series of steps, outlined as follows:
+
 **1. Label Encoding**
 
 The 'difficulty' labels are encoded using a LabelEncoder to convert them into numerical format, suitable for model training.
@@ -305,7 +307,37 @@ The model is trained and evaluated using a nested loop over different combinatio
 The model with the highest accuracy on the test set is saved as the best model, which is used to generate predictions on the test set, and a classification report is generated using classification_report from sklearn.metrics. This report provides metrics such as precision, recall, and F1-score for each class, enabling a comprehensive evaluation of the model's performance.
 
 **10. Results**
+(1) *Classification Report: Only-sentence Assessment's Neural Network Best Model *
 
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.55      | 0.57   | 0.56     | 166     |
+| **1 (A2 Level)**| 0.37      | 0.38   | 0.37     | 158     |
+| **2 (B1 Level)**| 0.39      | 0.35   | 0.37     | 166     |
+| **3 (B2 Level)**| 0.39      | 0.36   | 0.37     | 153     |
+| **4 (C1 Level)**| 0.39      | 0.41   | 0.40     | 152     |
+| **5 (C2 Level)**| 0.44      | 0.46   | 0.45     | 165    |
+| **accuracy**    |           |        | 0.42     | 960     |
+| **macro avg**   | 0.42      | 0.42   | 0.42     | 960     |
+| **weighted avg**| 0.42      | 0.42   | 0.42     | 960     |
+
+Best parameters associated with this model: {Iterations 1500, Learning Rate 1.049, Accuracy 42.29%}
+
+(2) *Classification Report: Additional Features Assessment's Neural Network Best Model*
+
+|                 | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|---------|
+| **0 (A1 Level)**| 0.80      | 0.23   | 0.36     | 153     |
+| **1 (A2 Level)**| 0.40      | 0.78   | 0.53     | 156     |
+| **2 (B1 Level)**| 0.50      | 0.43   | 0.46     | 153     |
+| **3 (B2 Level)**| 0.47      | 0.50   | 0.49     | 173     |
+| **4 (C1 Level)**| 0.38      | 0.37   | 0.38     | 166     |
+| **5 (C2 Level)**| 0.53      | 0.45   | 0.48     | 159     |
+| **accuracy**    |           |        | 0.46     | 960     |
+| **macro avg**   | 0.51      | 0.46   | 0.45     | 960     |
+| **weighted avg**| 0.51      | 0.46   | 0.45     | 960     |
+
+Best parameters associated with this model: {Iterations 1500, Learning Rate 1.049, Accuracy 46.15%}
 
 ### 7️⃣ FlauBERT Model
 ### 8️⃣ 
