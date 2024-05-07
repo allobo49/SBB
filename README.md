@@ -53,7 +53,9 @@ To optimize our model, we employ GridSearchCV with a range of parameters for TF-
 - *"classifier__C"*: This is the inverse of regularization strength in logistic regression. Regularization is applied to avoid overfitting by penalizing larger coefficients. Values assessed: 0.1, 1 and 10.
 - *"classifier__penalty"*: This parameter specifies the norm used in the penalization (regularization) of the logistic regression model. Values assessed: l2 and none.
 
-This extensive search help identifying the best combination of parameters for our model based on accuracy and by performing a 3-fold cross-validation.
+> All the hyperparameter values mentioned in this document have been chosen with the intent of achieving optimal performance while also taking computational costs into account.
+
+This extensive search help identifying an optimal combination of parameters for our model based on accuracy and by performing a 3-fold cross-validation.
 
 **5. Training and Testing**
 We split our dataset into training and testing sets to validate the effectiveness of our model. After training, we identify the best model parameters that lead to the highest cross-validation accuracy.
@@ -343,7 +345,27 @@ Overall, while both models utilized the same hyperparameters (Iterations: 1500, 
 
 ### 7️⃣ FlauBERT Model
 
+Not fully satisfied with the obtained accuracy levels, we decided to explore alternative methodologies, in this case, the FlauBERT Model from [Hugging Face](https://huggingface.co/docs/transformers/en/model_doc/flaubert), as described:
 
+> The FlauBERT model was proposed in the paper FlauBERT: Unsupervised Language Model Pre-training for French by Hang Le et al. It’s a transformer model pretrained using a masked language modeling (MLM) objective (like BERT).
+
+For the FlauBERT model, it is possible to choose from several options:
+
+| Model name                | Number of layers | Attention Heads | Embedding Dimension | Total Parameters |
+|---------------------------|------------------|-----------------|---------------------|------------------|
+| flaubert-small-cased      | 6                | 8               | 512                 | 54M              |
+| flaubert-base-uncased     | 12               | 12              | 768                 | 137M             |
+| flaubert-base-cased       | 12               | 12              | 768                 | 138M             |
+| flaubert-large-cased      | 24               | 16              | 1024                | 373M             |
+
+We decided to use the *FlauBERT large cased model because it has greater depth, a more sophisticated attention mechanism, a larger embedding size, and a higher parameter count. Larger models such as the FlauBERT large cased typically outperform smaller ones across a variety of language understanding benchmarks, potentially offering higher accuracy.
+
+Also, the [BERT authors recommend fine-tuning](https://github.com/google-research/bert) for four epochs with the following hyperparameter options:
+
+- batch sizes: 8, 16, 32, 64, 128
+- learning rates: 3e-4, 1e-4, 5e-5, 3e-5
+
+Given the computational limitation, we will train our model only on 2 different different batch sizes.
 
 ### 8️⃣ 
 ### 🖇️ Collective Overview
