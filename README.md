@@ -411,7 +411,7 @@ The main difference between the performance of the training on the batch 16 and 
 
 ![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
 
-**Model configured with a learning rate of 5e-5, a batch size of 32, and trained for 6 epochs.**
+#### **Model configured with a learning rate of 5e-5, a batch size of 32, and trained for 6 epochs.**
 
 Based on the previous results, we opted to train the model over a larger number of epochs, specifically over 6 epochs, using a batch size of 32 and maintaining the previous learning rate of 5e-5. Here are the results obtained: 
 
@@ -428,7 +428,7 @@ We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
 
-**Model configured with a different learning rate adjustement**
+#### **Model configured with a different learning rate adjustement**
 
 Aiming to explore new possibilities that could enhance our model, we decided to make modifications to the Warm-Up Phase and adjust the Learning Rate:
 
@@ -459,7 +459,7 @@ The results for 8 epochs using the adjusted learning rate are as follows:
 
 While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower acore. We also adjusted the number of epochs to 15 and lower, however, the results were worse.
 
-**Model configured with a batch size of 16 and different learning rates**
+#### **Model configured with a batch size of 16 and different learning rates**
 
 We decided, to explore a bit more the training of the models over the lower batch size and different learning rates than before.
 
@@ -478,7 +478,7 @@ Each training session was conducted with a distinct learning rate, ranging from 
 
 We achieved an accuracy of 51% within just two epochs using a learning rate of 2e-05. Encouraged by these results, we have decided to continue refining the model with this learning rate. To explore the model's capacity further, we plan to keep the batch size to 16 and adjust the learning rate to 3e-05, while extending the training period to 15 epochs.
 
-**Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs**
+#### **Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs**
 
 | Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
 |--------|---------------|-----------------|---------------------|-------------------------------------------|
@@ -526,7 +526,7 @@ For instance, in the example below we demonstrate the results per epoch after th
 
 The best model from this training had the result on Kaggle of 0.600.
 
-**Our predictions made with the model 0.600 for Kaggle**
+Our predictions made with the model 0.600 for Kaggle:
 
 | Difficulty Level | Count |
 |------------------|-------|
@@ -541,9 +541,9 @@ The best model from this training had the result on Kaggle of 0.600.
 
 **Approach we took for the best model on Kaggle:**
 
-**After achieving initial results over 15 epochs with the a learning rate of 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
+After achieving initial results over 15 epochs with the a learning rate of 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
 
-We extended the training by **an additional 6 epochs with a learning rate of 2e-05, which further refined our model.** 
+We extended the training by an additional 6 epochs with a learning rate of 2e-05, which further refined our model.
 
 | Epoch | Learning Rate | Average Loss        | Validation Accuracy | Notes                                          |
 |-------|---------------|---------------------|---------------------|------------------------------------------------|
@@ -585,7 +585,7 @@ While our best model achieved an accuracy of 0.610 on Kaggle by following this a
 | **Final Loss**                  | 0.03083539136728177                            |
 | **Final Accuracy**              | 0.6020833333333333                             |
 
-**Our predictions made with the model 0.610 for Kaggle**
+Our predictions made with the model 0.610 for Kaggle:
 
 | Difficulty Level | Count |
 |------------------|-------|
