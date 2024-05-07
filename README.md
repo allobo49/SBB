@@ -95,6 +95,8 @@ Best parameters associated with this model:  {'classifier__C': 10, 'classifier__
 
 Best parameters associated with this model:  {'classifier__C': 10, 'classifier__penalty': 'l2', 'preprocessor__tfidf__ngram_range': (1, 1), 'preprocessor__tfidf__use_idf': True}
 
+Given the good performance and accuracy of this model, we decided to use it to generate predictions for the 'unlabelled_test_data' and submit them to Kaggle, where we achieved an accuracy of 0.569.
+
 **7. Conclusion**
 
 The inclusion of additional features alongside the basic TF-IDF vectorization of the sentences appears to enhance the model's ability to more accurately and effectively classify the difficulty levels of French texts for English speakers. This is particularly evident in the improved accuracy (0.51 in the Additional Features Assessment VS 0.48 in the Only-Sentence Assessment) and macro averages, which suggest that the model benefits from a richer set of input data. These enhancements likely provide the model with a more nuanced understanding of the text, improving its performance, especially in correctly identifying instances at the extremes of the difficulty spectrum (A1 and C2 levels).
