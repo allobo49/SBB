@@ -367,17 +367,15 @@ Also, the [BERT authors recommend fine-tuning](https://github.com/google-researc
 
 Given the computational limitation, we will train our model only on 2 different different batch sizes: 16 and 32.
 
-**FlauBERT Model with different learning rates**
+**FlauBERT Model over different learning rates**
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
-Besides, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
+Moreover, we also employ a **Linear Learning Rate Scheduler** to manage the learning rate throughout the training process. This scheduler starts with a relatively high learning rate and gradually decreases it to near zero by the end of the training. This approach ensures that we begin training with aggressive learning steps and fine-tune the model parameters more delicately as training progresses.
 
 Although this training setup does not include a warm-up phase where the learning rate would gradually ramp up before decreasing, the scheduler is configured to reduce the learning rate slightly with each training step. This gradual reduction helps in stabilizing the training as it advances.
 
-We would like to first observe the results with this setup and may adjust these parameters further based on the outcomes of the initial training phase.
-
-**Results of the training on the batch of 16 with different learning rates**
+We would like to first observe the results with this setup and may adjust these parameters further based on the outcomes of the initial training phase. Here are the training results using a batch size of 16 across various learning rates:
 
 | Learning Rate | Epoch | Average Loss | Accuracy   | Precision | Recall    | F1 Score  | Notes                  |
 |---------------|-------|--------------|------------|-----------|-----------|-----------|------------------------|
@@ -398,9 +396,9 @@ We would like to first observe the results with this setup and may adjust these 
 | 2e-05         | 3     | 0.06963      | 53.44%     | 53.24%    | 53.44%    | 52.64%    | -                      |
 | 2e-05         | 4     | 0.06303      | 52.71%     | 52.48%    | 52.71%    | 52.28%    | -                      |
 
-Our training was interrupted, so we couldn't fully evaluate the results for a batch size of 32. However, from what we observed, a learning rate of 5e-05 yielded the highest performance in terms of accuracy, precision, recall, and F1 score. In the next stage, we will continue training our model using this learning rate and adjust the batch size to fully assess the results for batch 32.
+Our training was interrupted, preventing a complete evaluation of the results for a batch size of 32. However, based on our observations, a learning rate of 5e-05 produced the highest performance across accuracy, precision, recall, and F1 score (surpassing all previous models). Consequently, we decided to continue training using this learning rate and adjust the batch size to thoroughly assess the results for batch 32.
 
-We further trained the model on the batch size 32 over 4 epochs with the learning rate 5e-05. These are the results that we got:
+We further trained the model on the batch size 32 over 4 epochs with the learning rate 5e-05 (previous highest performance in terms of accuracy). These are the results obtained:
 
 | Epoch | Learning Rate | Average Loss     | Accuracy   | Precision | Recall   | F1 Score  |
 |-------|---------------|------------------|------------|-----------|----------|-----------|
@@ -413,11 +411,9 @@ The main difference between the performance of the training on the batch 16 and 
 
 ![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
 
-### **Model with 5e-5 learning rate, batch 32, 6 epochs**
+**Model configured with a learning rate of 5e-5, a batch size of 32, and trained for 6 epochs.**
 
-We decided to train the model over a larger number of epochs, in this case 6 with the batch 32 and the same learning rate as before.
-
-**Results with the batch 32, learning rate 5e-5 over larger number of epochs**
+Based on the previous results, we opted to train the model over a larger number of epochs, specifically over 6 epochs, using a batch size of 32 and maintaining the previous learning rate of 5e-5. Here are the results obtained: 
 
 | Epoch | Learning Rate | Average Loss   | Accuracy   | Precision   | Recall   | F1 Score   |
 |-------|---------------|----------------|------------|-------------|----------|------------|
@@ -432,13 +428,13 @@ We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
 
-### **Model with a different learning rate adjustement**
+**Model configured with a different learning rate adjustement**
 
-Modifications for Warm-Up Phase and Learning Rate Adjustment
+Aiming to explore new possibilities that could enhance our model, we decided to make modifications to the Warm-Up Phase and adjust the Learning Rate:
 
-**Increased the Initial Learning Rate:** We start with a higher initial learning rate - 1e-4.
+- *Increased the Initial Learning Rate:* We start with a higher initial learning rate of 1e-4.
 
-**Added Warm-Up Steps:** Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
+- *Added Warm-Up Steps:* Introduce a warm-up phase where the learning rate will linearly increase to this higher initial rate over a number of steps. A common strategy is to set the warm-up steps to 10% of the total training steps.
 
 `# Initialize the optimizer with a higher initial learning rate`
 `optimizer = AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-08)`
@@ -446,7 +442,7 @@ Modifications for Warm-Up Phase and Learning Rate Adjustment
 `# Scheduler with warm-up phase`
 `scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=total_steps)`
 
-**Results for 8 epochs with the adjusted learning rate**
+The results for 8 epochs using the adjusted learning rate are as follows:
 
 | Epoch | Learning Rate | Average Loss      | Accuracy   | Precision | Recall   | F1 Score  |
 |-------|---------------|-------------------|------------|-----------|----------|-----------|
@@ -463,7 +459,7 @@ Modifications for Warm-Up Phase and Learning Rate Adjustment
 
 While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower acore. We also adjusted the number of epochs to 15 and lower, however, the results were worse.
 
-### **Model 3e-05 with large number of epochs and batch size 16**
+**Model configured with a batch size of 16 and different learning rates**
 
 We decided, to explore a bit more the training of the models over the lower batch size and different learning rates than before.
 
@@ -482,7 +478,7 @@ Each training session was conducted with a distinct learning rate, ranging from 
 
 We achieved an accuracy of 51% within just two epochs using a learning rate of 2e-05. Encouraged by these results, we have decided to continue refining the model with this learning rate. To explore the model's capacity further, we plan to keep the batch size to 16 and adjust the learning rate to 3e-05, while extending the training period to 15 epochs.
 
-**Model 3e-05 with large number of epochs and batch size 16**
+**Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs**
 
 | Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
 |--------|---------------|-----------------|---------------------|-------------------------------------------|
@@ -512,7 +508,7 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 
 `model.train()`
 
-**We saved this best model and continued the training with a lower learning rate of 2e-05.**
+**We saved this 🏆 BEST MODEL 🏆 and continued the training with a lower learning rate of 2e-05.**
 
 For instance, in the example below we demonstrate the results per epoch after the training on 15 epochs with the learning rate 3e-05 and then continuing the training on the lower learning rate for 9 epochs.
 
@@ -543,11 +539,11 @@ The best model from this training had the result on Kaggle of 0.600.
 
 ![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/a61cf5434af67b37f57bf0cd083882fffb8aaa4a/all_predictions.png)
 
-**Approach we took for the best model on Kaggle**
+**Approach we took for the best model on Kaggle:**
 
-**After achieving initial results from 15 epochs with the learning rate 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
+**After achieving initial results over 15 epochs with the a learning rate of 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
 
-We extended the training by **an additional 6 epochs with learning rate 2e-05, which further refined our model.** 
+We extended the training by **an additional 6 epochs with a learning rate of 2e-05, which further refined our model.** 
 
 | Epoch | Learning Rate | Average Loss        | Validation Accuracy | Notes                                          |
 |-------|---------------|---------------------|---------------------|------------------------------------------------|
@@ -575,7 +571,7 @@ Observing continuous improvement, we decided that maintaining the learning rate 
 
 The decrease in average loss indicates that our model was becoming better at fitting the training data, effectively minimizing the error between the predicted values and the actual values. This can be attributed to the model's increasing proficiency in identifying patterns and reducing prediction errors for the specific scenarios presented during training. However, the minimal gains in accuracy suggest that these improvements in loss did not translate to a broader generalization capability on unseen data. 
 
-While our best model achieved an accuracy of 0.610 on Kaggle by following this approach, we did not fully rerun the model to generate the evaluation metrics of the final results due to computational limitations and financial constraints, as our team had to purchase computational units via Google Colab Pro. However, following the approach of initially training the model for 15 epochs with a learning rate of 3e-05, and then continuing the training with a starting with lower learning rate and adjusting it given the model results, should produce similar results.
+While our best model achieved an accuracy of 0.610 on Kaggle by following this approach, we did not fully rerun the model to generate the evaluation metrics of the final results due to computational limitations and financial constraints, as our team had to purchase computational units via Google Colab Pro. However, following the approach of initially training the model for 15 epochs with a learning rate of 3e-05, and then continuing the training with a starting with a lower learning rate and adjusting it given the model results, should produce similar results.
 
 | Description                     | Details                                        |
 |---------------------------------|------------------------------------------------|
