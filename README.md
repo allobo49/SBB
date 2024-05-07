@@ -367,7 +367,7 @@ Also, the [BERT authors recommend fine-tuning](https://github.com/google-researc
 
 Given the computational limitation, we will train our model only on 2 different different batch sizes: 16 and 32.
 
-**FlauBERT Model over different learning rates:**
+#### **FlauBERT Model over different learning rates:**
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
@@ -424,7 +424,7 @@ Based on the previous results, we opted to train the model over a larger number 
 | 5/6   | 5e-5          | 0.02137682571  | 0.590625   | 0.5990724   | 0.590625 | 0.5874222  |
 | 6/6   | 5e-5          | 0.01756872524  | 0.596875   | 0.6022174   | 0.596875 | 0.5978323  |
 
-We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 4 had higher accuracy, it provided the result of 0.573 on Kaggle. **For the model on the epoch 6th, the F1 score was higher, leading to the result of Kaggle of 0.601.** This demonstrates that relying solely on accuracy might not give a comprehensive assessment of a model's performance. Therefore, it is crucial to consider multiple metrics.
+We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 4 had higher accuracy, it provided the result of 0.573 on Kaggle. For the model on the epoch 6th, the F1 score was higher, leading to the result of Kaggle of 0.601. This demonstrates that relying solely on accuracy might not give a comprehensive assessment of a model's performance. Therefore, it is crucial to consider multiple metrics.
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
 
@@ -459,7 +459,7 @@ The results for 8 epochs using the adjusted learning rate are as follows:
 
 While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower acore. We also adjusted the number of epochs to 15 and lower, however, the results were worse.
 
-**Model configured with a batch size of 16 and different learning rates:**
+#### **Model configured with a batch size of 16 and different learning rates:**
 
 We decided, to explore a bit more the training of the models over the lower batch size and different learning rates than before.
 
@@ -478,7 +478,7 @@ Each training session was conducted with a distinct learning rate, ranging from 
 
 We achieved an accuracy of 51% within just two epochs using a learning rate of 2e-05. Encouraged by these results, we have decided to continue refining the model with this learning rate. To explore the model's capacity further, we plan to keep the batch size to 16 and adjust the learning rate to 3e-05, while extending the training period to 15 epochs.
 
-**Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs:**
+#### **Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs:**
 
 | Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
 |--------|---------------|-----------------|---------------------|-------------------------------------------|
