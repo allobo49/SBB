@@ -508,7 +508,7 @@ With this setting, we were able to achieve an accuracy of 0.590 on Kaggle. In th
 
 `model.train()`
 
-**We saved this 🏆 BEST MODEL 🏆 and continued the training with a lower learning rate of 2e-05.**
+**We saved this best model and continued the training with a lower learning rate of 2e-05.**
 
 For instance, in the example below we demonstrate the results per epoch after the training on 15 epochs with the learning rate 3e-05 and then continuing the training on the lower learning rate for 9 epochs.
 
@@ -539,7 +539,7 @@ Our predictions made with the model 0.600 for Kaggle:
 
 ![predictions.png](https://github.com/AnyaLang/SBB_ML/blob/a61cf5434af67b37f57bf0cd083882fffb8aaa4a/all_predictions.png)
 
-**Approach we took for the best model on Kaggle:**
+**Approach we took for the 🏆 BEST MODEL 🏆 on Kaggle:**
 
 After achieving initial results over 15 epochs with the a learning rate of 3e-05, we changed the learning rate to 1e-05 and continued the training for 3 more epochs. We saw the improvement of the model, so decided to proceed the training with slightly higher learning rate.**
 
@@ -554,7 +554,7 @@ We extended the training by an additional 6 epochs with a learning rate of 2e-05
 | 5/6   | 2e-05         | 0.03376048295150819 | 0.5864583333333333  |                                                |
 | 6/6   | 2e-05         | 0.02625617888628161 | 0.5916666666666667  | Saved as `best_model_lr2e-05_ep6_acc0.59.pt`    |
 
-Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for 3 more epochs, however, given one issue in the code, the training extended to additional **9 epochs**. Throughout this extended training period, we noticed that while the **average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains**.
+Observing continuous improvement, we decided that maintaining the learning rate of 2e-05 was optimal and proceeded to extend the training for 3 more epochs, however, given one issue in the code, the training extended to additional 9 epochs. Throughout this extended training period, we noticed that while the average loss consistently decreased, the accuracy improvements on our model plateaued, showing only marginal gains.
 
 | Epoch | Learning Rate | Average Loss         | Validation Accuracy   |
 |-------|---------------|----------------------|-----------------------|
