@@ -598,9 +598,7 @@ Our predictions made with the model 0.610 for Kaggle:
 
 ![predictions_best.png](https://github.com/AnyaLang/SBB_ML/blob/4f95efcdcfd33810b7f1419ee02da33ddcb365f1/best_graph.png)
 
-### 8️⃣ 
 ### 🖇️ Collective Overview
-## Best Model: FlauBERT Model
 ## Ranking
 ## Streamlit Application
 ## Video
