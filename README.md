@@ -402,10 +402,10 @@ We further trained the model on the batch size 32 over 4 epochs with the learnin
 
 | Epoch | Learning Rate | Average Loss     | Accuracy   | Precision | Recall   | F1 Score  |
 |-------|---------------|------------------|------------|-----------|----------|-----------|
-| 1/4   | 5e-5          | 0.053| 0.43    | 0.55 | 0.43  | 0.41 |
-| 2/4   | 5e-5          | 0.04| 0.48  | 0.52 | 0.48| 0.47 |
-| 3/4   | 5e-5          | 0.032| 0.55 | 0.57 | 0.55| 0.55 |
-| 4/4   | 5e-5          | 0.026| 0.57  | 0.581 | 0.57| 0.58 |
+| 1/4   | 5e-5          | 0.053033780585974| 0.43125    | 0.5486596 | 0.43125  | 0.4053166 |
+| 2/4   | 5e-5          | 0.040040116741632| 0.4791667  | 0.5172350 | 0.4791667| 0.4742365 |
+| 3/4   | 5e-5          | 0.031953962224846| 0.5510417  | 0.5744112 | 0.5510417| 0.5477183 |
+| 4/4   | 5e-5          | 0.025974183475288| 0.5739583  | 0.5810352 | 0.5739583| 0.5750711 |
 
 The main difference between the performance of the training on the batch 16 and 32 with the same learning rate 5e-5 is the average loss. From the graph, it's clear that the average loss for the batch size of 32 is significantly lower than that for the batch size of 16 at every epoch.
 
