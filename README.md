@@ -367,7 +367,7 @@ Also, the [BERT authors recommend fine-tuning](https://github.com/google-researc
 
 Given the computational limitation, we will train our model only on 2 different different batch sizes: 16 and 32.
 
-**FlauBERT Model over different learning rates**
+**FlauBERT Model over different learning rates:**
 
 Important to note that our first model is trained using the **AdamW optimizer**, which is a variant of the traditional Adam optimizer. AdamW incorporates a regularization technique known as [weight decay](https://github.com/tml-epfl/why-weight-decay), which is used in training neural networks to prevent overfitting. It functions by incorporating a term into the loss function that penalizes large weights.
 
@@ -402,16 +402,16 @@ We further trained the model on the batch size 32 over 4 epochs with the learnin
 
 | Epoch | Learning Rate | Average Loss     | Accuracy   | Precision | Recall   | F1 Score  |
 |-------|---------------|------------------|------------|-----------|----------|-----------|
-| 1/4   | 5e-5          | 0.053033780585974| 0.43125    | 0.5486596 | 0.43125  | 0.4053166 |
-| 2/4   | 5e-5          | 0.040040116741632| 0.4791667  | 0.5172350 | 0.4791667| 0.4742365 |
-| 3/4   | 5e-5          | 0.031953962224846| 0.5510417  | 0.5744112 | 0.5510417| 0.5477183 |
-| 4/4   | 5e-5          | 0.025974183475288| 0.5739583  | 0.5810352 | 0.5739583| 0.5750711 |
+| 1/4   | 5e-5          | 0.053| 0.43    | 0.55 | 0.43  | 0.41 |
+| 2/4   | 5e-5          | 0.04| 0.48  | 0.52 | 0.48| 0.47 |
+| 3/4   | 5e-5          | 0.032| 0.55 | 0.57 | 0.55| 0.55 |
+| 4/4   | 5e-5          | 0.026| 0.57  | 0.581 | 0.57| 0.58 |
 
 The main difference between the performance of the training on the batch 16 and 32 with the same learning rate 5e-5 is the average loss. From the graph, it's clear that the average loss for the batch size of 32 is significantly lower than that for the batch size of 16 at every epoch.
 
 ![16 and 32 batch_loss.png](https://github.com/AnyaLang/SBB_ML/blob/125ad85ffe0c16a54ce6138367cc1b7af2dc0b6e/16%20and%2032%20batch_loss.png)
 
-#### **Model configured with a learning rate of 5e-5, a batch size of 32, and trained for 6 epochs.**
+#### **Model configured with a learning rate of 5e-5, a batch size of 32, and trained for 6 epochs:**
 
 Based on the previous results, we opted to train the model over a larger number of epochs, specifically over 6 epochs, using a batch size of 32 and maintaining the previous learning rate of 5e-5. Here are the results obtained: 
 
@@ -428,7 +428,7 @@ We then submitted two models on Kaggle, from the epoch 4 and 6. While the epoch 
 
 We also experimented and changed the number of epochs to 4, 6 and 8. However, 6 epochs resulted in the highest accuracy of the model and F1 value.
 
-#### **Model configured with a different learning rate adjustement**
+#### **Model configured with a different learning rate adjustement:**
 
 Aiming to explore new possibilities that could enhance our model, we decided to make modifications to the Warm-Up Phase and adjust the Learning Rate:
 
@@ -459,7 +459,7 @@ The results for 8 epochs using the adjusted learning rate are as follows:
 
 While the model with the adjusted learning rate demonstrated a higher accuracy score and performed better than the models before over other metrics, the submission on Kaggle provided a lower acore. We also adjusted the number of epochs to 15 and lower, however, the results were worse.
 
-#### **Model configured with a batch size of 16 and different learning rates**
+**Model configured with a batch size of 16 and different learning rates:**
 
 We decided, to explore a bit more the training of the models over the lower batch size and different learning rates than before.
 
@@ -478,7 +478,7 @@ Each training session was conducted with a distinct learning rate, ranging from 
 
 We achieved an accuracy of 51% within just two epochs using a learning rate of 2e-05. Encouraged by these results, we have decided to continue refining the model with this learning rate. To explore the model's capacity further, we plan to keep the batch size to 16 and adjust the learning rate to 3e-05, while extending the training period to 15 epochs.
 
-#### **Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs**
+**Model configured with a learning rate of 3e-05, a batch size of 16 and over a large number of epochs:**
 
 | Epoch  | Learning Rate | Average Loss    | Validation Accuracy | Notes                                     |
 |--------|---------------|-----------------|---------------------|-------------------------------------------|
