@@ -10,7 +10,7 @@ st.write('Enter a French text below and click the button to analyze its difficul
 user_input = st.text_area("Insert your text here", height=200)
 
 # Load the model (make sure the model file is in the same directory or specify the full path)
-model = joblib.load('best_model_LR_features.joblib')  # Update the path as needed
+model = joblib.load('https://github.com/allobo49/SBB/best_model_LR_features.joblib')  # Update the path as needed
 
 if st.button('Click here to Analyze Difficulty'):
     if user_input:
