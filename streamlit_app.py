@@ -1,3 +1,6 @@
+source /path/to/your/env/bin/activate
+pip install joblib
+
 import streamlit as st
 import pandas as pd
 import joblib 
