@@ -601,5 +601,6 @@ Our predictions made with the model 0.610 for Kaggle:
 ### 🖇️ Collective Overview
 ## Ranking
 ## Streamlit Application
+Which is the point of developing a model to predict the difficulty of a French Level if we do not leverage it? Now it's 
 ## Video
 ## Contributions
